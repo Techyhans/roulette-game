@@ -15,7 +15,7 @@ function App() {
 				/>
 				<Route
 					exact={true}
-					path='/uuid/admin'
+					path='/861c1dbe-1de4-11ec-9621-0242ac130002/admin'
 					render={() => <AdminDashboard />}
 				/>
 			</HashRouter>
