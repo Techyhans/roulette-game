@@ -78,73 +78,73 @@ function AdminDashboard() {
 		<Container>
 			<Form onSubmit={onSubmit}>
 				<FormGroup>
-					<Label>Nitendo Switch (1)</Label>
+					<Label>Prob (1)</Label>
 					<Input type="number" onChange={(e) => {
 						setForm((prevState) => ({...prevState, 1: parseFloat(e.target.value) * 10}));
 					}}/>
 				</FormGroup>
 				<FormGroup>
-					<Label>Marshall Emberton Portable (2)</Label>
+					<Label>Prob (2)</Label>
 					<Input type="number" onChange={(e) => {
 						setForm((prevState) => ({...prevState, 2: parseFloat(e.target.value) * 10}));
 					}}/>
 				</FormGroup>
 				<FormGroup>
-					<Label>Lenovo 23.8 inch L24i-30 IPS GHD 75hz 4ms AMD (3)</Label>
+					<Label>Prob (3)</Label>
 					<Input type="number" onChange={(e) => {
 						setForm((prevState) => ({...prevState, 3: parseFloat(e.target.value) * 10}));
 					}}/>
 				</FormGroup>
 				<FormGroup>
-					<Label>Nothing (4)</Label>
+					<Label>Prob (4)</Label>
 					<Input type="number" onChange={(e) => {
 						setForm((prevState) => ({...prevState, 4: parseFloat(e.target.value) * 10}));
 					}}/>
 				</FormGroup>
 				<FormGroup>
-					<Label>Logitech G402 Hyperion Fury Wired Gaming Mouse (5)</Label>
+					<Label>Prob (5)</Label>
 					<Input type="number" onChange={(e) => {
 						setForm((prevState) => ({...prevState, 5: parseFloat(e.target.value) * 10}));
 					}}/>
 				</FormGroup>
 				<FormGroup>
-					<Label>Logitech Z333 2.1 Multimedia Speaker System (6)</Label>
+					<Label>Prob (6)</Label>
 					<Input type="number" onChange={(e) => {
 						setForm((prevState) => ({...prevState, 6: parseFloat(e.target.value) * 10}));
 					}}/>
 				</FormGroup>
 				<FormGroup>
-					<Label>Nothing (7)</Label>
+					<Label>Prob (7)</Label>
 					<Input type="number" onChange={(e) => {
 						setForm((prevState) => ({...prevState, 7: parseFloat(e.target.value) * 10}));
 					}}/>
 				</FormGroup>
 				<FormGroup>
-					<Label>Xiaomi Xiaoai Speaker Play Enhanced Infrared Remote Control (8)</Label>
+					<Label>Prob (8)</Label>
 					<Input type="number" onChange={(e) => {
 						setForm((prevState) => ({...prevState, 8: parseFloat(e.target.value) * 10}));
 					}}/>
 				</FormGroup>
 				<FormGroup>
-					<Label>Aula S2056 Membrane Gaming Keyboard (9)</Label>
+					<Label>Prob (9)</Label>
 					<Input type="number" onChange={(e) => {
 						setForm((prevState) => ({...prevState, 9: parseFloat(e.target.value) * 10}));
 					}}/>
 				</FormGroup>
 				<FormGroup>
-					<Label>Nothing (10)</Label>
+					<Label>Prob (10)</Label>
 					<Input type="number" onChange={(e) => {
 						setForm((prevState) => ({...prevState, 10: parseFloat(e.target.value) * 10}));
 					}}/>
 				</FormGroup>
 				<FormGroup>
-					<Label>ZEALOT Portable TWS Bluetooth Speaker Subwoofer 3D Bass (11)</Label>
+					<Label>Prob (11)</Label>
 					<Input type="number" onChange={(e) => {
 						setForm((prevState) => ({...prevState, 11: parseFloat(e.target.value) * 10}));
 					}}/>
 				</FormGroup>
 				<FormGroup>
-					<Label>Powerbank (Pineng 10000 MAH) (12)</Label>
+					<Label>Prob (12)</Label>
 					<Input type="number" onChange={(e) => {
 						setForm((prevState) => ({...prevState, 12: parseFloat(e.target.value) * 10}));
 					}}/>
