@@ -1,5 +1,4 @@
-import React, {useState} from "react";
-import {Wheel} from "react-custom-roulette";
+import React from "react";
 import './App.css';
 import {HashRouter, Route} from "react-router-dom";
 import Roulette from "./pages/Roulette";
