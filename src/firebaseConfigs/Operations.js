@@ -8,3 +8,10 @@ export const selectData = async () => {
 		.child('probs')
 		.get()
 }
+
+export const selectItems = async () => {
+	return await database
+		.ref()
+		.child('item')
+		.get()
+}

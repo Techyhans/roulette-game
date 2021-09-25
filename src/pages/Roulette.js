@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Wheel} from "react-custom-roulette";
 import {Button, Col, Container, Form, FormGroup, Input, Label, Row} from "reactstrap";
-import {selectData} from "../firebaseConfigs/Operations";
+import {selectData, selectItems} from "../firebaseConfigs/Operations";
 import {database} from "../firebaseConfigs/Auth";
 import {useHistory} from "react-router-dom";
 
@@ -24,6 +24,7 @@ function Roulette() {
 	const [mustSpin, setMustSpin] = useState(false);
 	const [prizeNumber, setPrizeNumber] = useState(0);
 	const [firebaseData, setFirebaseData] = useState({})
+	const [firebaseItems, setFirebaseItems] = useState({})
 	const [form, setForm] = useState({
 		1: 0,
 		2: 0,
@@ -80,7 +81,18 @@ function Roulette() {
 			})
 		}
 
+		async function fetchItem() {
+			await selectItems().then((snapshot) => {
+				const response = {}
+				snapshot.forEach((item) => {
+					response[item.key] = item.val()
+				})
+				setFirebaseItems(response)
+			})
+		}
+
 		fetchData()
+		fetchItem()
 	}, [])
 
 	const selectPrizeClass = (prizeNumber) => {
@@ -151,7 +163,7 @@ function Roulette() {
 						<Row>
 							<Col>
 								<FormGroup>
-									<Label>Nitendo Switch (1)</Label>
+									<Label>{firebaseItems['1']} (1)</Label>
 									<Input type="number" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 1: parseFloat(e.target.value) * 10}));
 									}}/>
@@ -159,7 +171,7 @@ function Roulette() {
 							</Col>
 							<Col>
 								<FormGroup>
-									<Label>Marshall Emberton Portable (2)</Label>
+									<Label>{firebaseItems['2']} (2)</Label>
 									<Input type="number" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 2: parseFloat(e.target.value) * 10}));
 									}}/>
@@ -167,7 +179,7 @@ function Roulette() {
 							</Col>
 							<Col>
 								<FormGroup>
-									<Label>Lenovo 23.8 inch L24i-30 IPS GHD 75hz 4ms AMD (3)</Label>
+									<Label>{firebaseItems['3']} (3)</Label>
 									<Input type="number" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 3: parseFloat(e.target.value) * 10}));
 									}}/>
@@ -175,7 +187,7 @@ function Roulette() {
 							</Col>
 							<Col>
 								<FormGroup>
-									<Label>Nothing (4)</Label>
+									<Label>{firebaseItems['4']} (4)</Label>
 									<Input type="number" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 4: parseFloat(e.target.value) * 10}));
 									}}/>
@@ -183,7 +195,7 @@ function Roulette() {
 							</Col>
 							<Col>
 								<FormGroup>
-									<Label>Logitech G402 Hyperion Fury Wired Gaming Mouse (5)</Label>
+									<Label>{firebaseItems['5']} (5)</Label>
 									<Input type="number" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 5: parseFloat(e.target.value) * 10}));
 									}}/>
@@ -191,7 +203,7 @@ function Roulette() {
 							</Col>
 							<Col>
 								<FormGroup>
-									<Label>Logitech Z333 2.1 Multimedia Speaker System (6)</Label>
+									<Label>{firebaseItems['6']} (6)</Label>
 									<Input type="number" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 6: parseFloat(e.target.value) * 10}));
 									}}/>
@@ -201,7 +213,7 @@ function Roulette() {
 						<Row>
 							<Col>
 								<FormGroup>
-									<Label>Nothing (7)</Label>
+									<Label>{firebaseItems['7']} (7)</Label>
 									<Input type="number" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 7: parseFloat(e.target.value) * 10}));
 									}}/>
@@ -209,7 +221,7 @@ function Roulette() {
 							</Col>
 							<Col>
 								<FormGroup>
-									<Label>Xiaomi Xiaoai Speaker Play Enhanced Infrared Remote Control (8)</Label>
+									<Label>{firebaseItems['8']} (8)</Label>
 									<Input type="number" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 8: parseFloat(e.target.value) * 10}));
 									}}/>
@@ -217,7 +229,7 @@ function Roulette() {
 							</Col>
 							<Col>
 								<FormGroup>
-									<Label>Aula S2056 Membrane Gaming Keyboard (9)</Label>
+									<Label>{firebaseItems['9']} (9)</Label>
 									<Input type="number" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 9: parseFloat(e.target.value) * 10}));
 									}}/>
@@ -225,7 +237,7 @@ function Roulette() {
 							</Col>
 							<Col>
 								<FormGroup>
-									<Label>Nothing (10)</Label>
+									<Label>{firebaseItems['10']} (10)</Label>
 									<Input type="number" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 10: parseFloat(e.target.value) * 10}));
 									}}/>
@@ -233,7 +245,7 @@ function Roulette() {
 							</Col>
 							<Col>
 								<FormGroup>
-									<Label>ZEALOT Portable TWS Bluetooth Speaker Subwoofer 3D Bass (11)</Label>
+									<Label>{firebaseItems['11']} (11)</Label>
 									<Input type="number" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 11: parseFloat(e.target.value) * 10}));
 									}}/>
@@ -241,13 +253,14 @@ function Roulette() {
 							</Col>
 							<Col>
 								<FormGroup>
-									<Label>Powerbank (Pineng 10000 MAH) (12)</Label>
+									<Label>{firebaseItems['12']} (12)</Label>
 									<Input type="number" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 12: parseFloat(e.target.value) * 10}));
 									}}/>
 								</FormGroup>
 							</Col>
 						</Row>
+						<br />
 						<Button type={"submit"}>Submit</Button>
 					</Form>
 				</Container>
