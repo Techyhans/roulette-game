@@ -14,6 +14,8 @@ function Login () {
 		if (form.username === 'admin' && form.password === '861c1dbe-1de4-11ec-9621-0242ac130002') {
 			localStorage.setItem('access', '861c1dbe-1de4-11ec-9621-0242ac130002')
 			history.push('/main')
+		} else {
+			alert('Not Authorized')
 		}
 	}
 

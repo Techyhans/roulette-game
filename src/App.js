@@ -13,15 +13,11 @@ function App() {
 		<>
 			<HashRouter forceRefresh={true}>
 				<Switch>
-					{
-						localStorage.getItem('access') === '861c1dbe-1de4-11ec-9621-0242ac130002' && (
-							<Route
-								path='/main'
-								render={() => <Roulette />}
-								exact
-							/>
-						)
-					}
+					<Route
+						path='/main'
+						render={() => <Roulette />}
+						exact
+					/>
 					<Route
 						exact
 						path='/'

@@ -3,6 +3,7 @@ import {Wheel} from "react-custom-roulette";
 import {Button, Col, Container, Form, FormGroup, Input, Label, Row} from "reactstrap";
 import {selectData} from "../firebaseConfigs/Operations";
 import {database} from "../firebaseConfigs/Auth";
+import {useHistory} from "react-router-dom";
 
 const data = [
 	{id: 1, option: 1},
@@ -37,6 +38,11 @@ function Roulette() {
 		11: 0,
 		12: 0,
 	})
+
+	const history = useHistory()
+	if(localStorage.getItem('access') !== '861c1dbe-1de4-11ec-9621-0242ac130002') {
+		history.push('/')
+	}
 
 	const onSubmit = (e) => {
 		e.preventDefault()
