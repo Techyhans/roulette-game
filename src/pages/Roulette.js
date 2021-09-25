@@ -185,7 +185,7 @@ function Roulette() {
 							</Col>
 							<Col>
 								<FormGroup>
-									<Label>Logitech Z333 2.1 Multimedia Speaker System 6)</Label>
+									<Label>Logitech Z333 2.1 Multimedia Speaker System (6)</Label>
 									<Input type="number" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 6: parseFloat(e.target.value) * 10}));
 									}}/>
