@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {Button, Form, FormGroup, Label, Input, Container} from 'reactstrap';
 import {database} from "../firebaseConfigs/Auth";
-
+import { v4 as uuidv4 } from 'uuid';
 function AdminDashboard() {
-
+	const [numPeople, setNumPeople] = useState(0)
+	const [links, setLinks] = useState([])
 	const [form, setForm] = useState({
 		1: 0,
 		2: 0,
@@ -57,6 +58,25 @@ function AdminDashboard() {
 			.catch(() => {
 				alert("Fail")
 			})
+	}
+
+	const onGenerateLink = (e) => {
+		e.preventDefault();
+		setLinks(links)
+		let temp = []
+		for (let i=0; i<numPeople; i++) {
+			const _uuid = uuidv4();
+			const ref = database.ref()
+			const uniqueKey = ref.child('auth').push().key
+			const usersRef = ref.child('auth').child(uniqueKey)
+			let data_to_submit = {
+				"uuid": _uuid,
+				"status": true
+			}
+			usersRef.set(data_to_submit).then(() => {})
+			temp.push(`https://roulette-game-hansheng7820.web.app/#/main?token=${_uuid}`)
+		}
+		setLinks(temp)
 	}
 
 	const onSubmitItem = (e) => {
@@ -227,6 +247,20 @@ function AdminDashboard() {
 				</FormGroup>
 				<Button type={"submit"}>Submit</Button>
 			</Form>
+			<hr />
+			<hr />
+			<Form onSubmit={onGenerateLink}>
+				<FormGroup>
+					<Label>Number of Participants</Label>
+					<Input type="text" onChange={(e) => setNumPeople(parseInt(e.target.value))}/>
+				</FormGroup>
+				<Button type={"submit"}>Generate Link</Button>
+			</Form>
+			{
+				links.map((item) => (
+					<h3 key={uuidv4()}>{item}</h3>
+				))
+			}
 		</Container>
 	);
 }

@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {Wheel} from "react-custom-roulette";
 import {Button, Col, Container, Form, FormGroup, Input, Label, Row} from "reactstrap";
-import {selectData, selectItems} from "../firebaseConfigs/Operations";
+import {selectData, selectItems, selectTokens} from "../firebaseConfigs/Operations";
 import {database} from "../firebaseConfigs/Auth";
-import {useHistory} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
+import queryString from 'query-string';
 
 const data = [
 	{id: 1, option: 1},
@@ -21,6 +22,7 @@ const data = [
 ];
 
 function Roulette() {
+	const [isAuth, setIsAuth] = useState(false)
 	const [mustSpin, setMustSpin] = useState(false);
 	const [prizeNumber, setPrizeNumber] = useState(0);
 	const [firebaseData, setFirebaseData] = useState({})
@@ -39,7 +41,7 @@ function Roulette() {
 		11: 0,
 		12: 0,
 	})
-
+	const location = useLocation();
 	const history = useHistory()
 	if(localStorage.getItem('access') !== '861c1dbe-1de4-11ec-9621-0242ac130002') {
 		history.push('/')
@@ -70,6 +72,34 @@ function Roulette() {
 			})
 	}
 
+	function checkToken() {
+		selectTokens().then((snapshot) => {
+			let isValid = true;
+			snapshot.forEach((item) => {
+				// console.log(item.val().uuid, queryString.parse(location.search).token, item.val().status)
+				if (item.val().uuid === queryString.parse(location.search).token && item.val().status === true) {
+					database
+						.ref()
+						.child('auth')
+						.child(item.key)
+						.update({
+							"status": false
+						})
+						.then(() => {
+							setIsAuth(true)
+						})
+						.catch(() => {
+						})
+				}
+				if (item.val().uuid === queryString.parse(location.search).token && item.val().status === false){
+					isValid = false
+				}
+			})
+			// console.log(isValid)
+			setIsAuth(isValid)
+		})
+	}
+
 	useEffect(() => {
 		async function fetchData() {
 			await selectData().then((snapshot) => {
@@ -93,6 +123,9 @@ function Roulette() {
 
 		fetchData()
 		fetchItem()
+		checkToken()
+		// console.log(checkToken())
+		// setIsAuth(checkToken())
 	}, [])
 
 	const selectPrizeClass = (prizeNumber) => {
@@ -107,6 +140,8 @@ function Roulette() {
 	}
 
 	const handleSpinClick = () => {
+		checkToken()
+
 		const newPrizeNumber = Math.floor(Math.random() * 1000) + 1;
 
 		setPrizeNumber(selectPrizeClass(newPrizeNumber));
@@ -148,7 +183,7 @@ function Roulette() {
 						setMustSpin(false);
 					}}
 				/>
-				<button className="btn btn-primary" onClick={handleSpinClick}>
+				<button className="btn btn-primary" onClick={handleSpinClick} disabled={!isAuth}>
 					SPIN
 				</button>
 				<br/>

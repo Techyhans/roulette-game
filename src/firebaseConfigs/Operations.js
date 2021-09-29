@@ -15,3 +15,10 @@ export const selectItems = async () => {
 		.child('item')
 		.get()
 }
+
+export const selectTokens = async () => {
+	return await database
+		.ref()
+		.child('auth')
+		.get()
+}
