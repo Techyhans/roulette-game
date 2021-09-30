@@ -3,7 +3,7 @@ import {Wheel} from "react-custom-roulette";
 import {Button, Col, Container, Form, FormGroup, Input, Label, Row} from "reactstrap";
 import {selectData, selectItems, selectTokens} from "../firebaseConfigs/Operations";
 import {database} from "../firebaseConfigs/Auth";
-import {useHistory, useLocation} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import queryString from 'query-string';
 
 const data = [
@@ -42,10 +42,11 @@ function Roulette() {
 		12: 0,
 	})
 	const location = useLocation();
-	const history = useHistory()
-	if(localStorage.getItem('access') !== '861c1dbe-1de4-11ec-9621-0242ac130002') {
-		history.push('/')
-	}
+	// const history = useHistory()
+
+	// if(queryString.parse(location.search).token === undefined) {
+	// 	history.push('/')
+	// }
 
 	const onSubmit = (e) => {
 		e.preventDefault()
@@ -127,7 +128,7 @@ function Roulette() {
 
 	useEffect(() => {
 		selectTokens().then((snapshot) => {
-			let isValid = true;
+			let isValid = false;
 			snapshot.forEach((item) => {
 				// console.log(item.val().uuid, queryString.parse(location.search).token, item.val().status)
 				if (item.val().uuid === queryString.parse(location.search).token && item.val().status === true) {
@@ -143,12 +144,12 @@ function Roulette() {
 						})
 						.catch(() => {
 						})
+					isValid = true;
 				}
 				if (item.val().uuid === queryString.parse(location.search).token && item.val().status === false){
 					isValid = false
 				}
 			})
-			// console.log(isValid)
 			setIsAuth(isValid)
 		})
 	}, [location.search])
