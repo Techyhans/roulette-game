@@ -225,7 +225,7 @@ function Roulette() {
 							<Col>
 								<FormGroup>
 									<Label>{firebaseItems['1']} (1)</Label>
-									<Input type="number" onChange={(e) => {
+									<Input type="text" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 1: parseFloat(e.target.value) * 10}));
 									}}/>
 								</FormGroup>
@@ -233,7 +233,7 @@ function Roulette() {
 							<Col>
 								<FormGroup>
 									<Label>{firebaseItems['2']} (2)</Label>
-									<Input type="number" onChange={(e) => {
+									<Input type="text" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 2: parseFloat(e.target.value) * 10}));
 									}}/>
 								</FormGroup>
@@ -241,7 +241,7 @@ function Roulette() {
 							<Col>
 								<FormGroup>
 									<Label>{firebaseItems['3']} (3)</Label>
-									<Input type="number" onChange={(e) => {
+									<Input type="text" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 3: parseFloat(e.target.value) * 10}));
 									}}/>
 								</FormGroup>
@@ -249,7 +249,7 @@ function Roulette() {
 							<Col>
 								<FormGroup>
 									<Label>{firebaseItems['4']} (4)</Label>
-									<Input type="number" onChange={(e) => {
+									<Input type="text" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 4: parseFloat(e.target.value) * 10}));
 									}}/>
 								</FormGroup>
@@ -257,7 +257,7 @@ function Roulette() {
 							<Col>
 								<FormGroup>
 									<Label>{firebaseItems['5']} (5)</Label>
-									<Input type="number" onChange={(e) => {
+									<Input type="text" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 5: parseFloat(e.target.value) * 10}));
 									}}/>
 								</FormGroup>
@@ -265,7 +265,7 @@ function Roulette() {
 							<Col>
 								<FormGroup>
 									<Label>{firebaseItems['6']} (6)</Label>
-									<Input type="number" onChange={(e) => {
+									<Input type="text" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 6: parseFloat(e.target.value) * 10}));
 									}}/>
 								</FormGroup>
@@ -275,7 +275,7 @@ function Roulette() {
 							<Col>
 								<FormGroup>
 									<Label>{firebaseItems['7']} (7)</Label>
-									<Input type="number" onChange={(e) => {
+									<Input type="text" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 7: parseFloat(e.target.value) * 10}));
 									}}/>
 								</FormGroup>
@@ -283,7 +283,7 @@ function Roulette() {
 							<Col>
 								<FormGroup>
 									<Label>{firebaseItems['8']} (8)</Label>
-									<Input type="number" onChange={(e) => {
+									<Input type="text" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 8: parseFloat(e.target.value) * 10}));
 									}}/>
 								</FormGroup>
@@ -291,7 +291,7 @@ function Roulette() {
 							<Col>
 								<FormGroup>
 									<Label>{firebaseItems['9']} (9)</Label>
-									<Input type="number" onChange={(e) => {
+									<Input type="text" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 9: parseFloat(e.target.value) * 10}));
 									}}/>
 								</FormGroup>
@@ -299,7 +299,7 @@ function Roulette() {
 							<Col>
 								<FormGroup>
 									<Label>{firebaseItems['10']} (10)</Label>
-									<Input type="number" onChange={(e) => {
+									<Input type="text" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 10: parseFloat(e.target.value) * 10}));
 									}}/>
 								</FormGroup>
@@ -307,7 +307,7 @@ function Roulette() {
 							<Col>
 								<FormGroup>
 									<Label>{firebaseItems['11']} (11)</Label>
-									<Input type="number" onChange={(e) => {
+									<Input type="text" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 11: parseFloat(e.target.value) * 10}));
 									}}/>
 								</FormGroup>
@@ -315,7 +315,7 @@ function Roulette() {
 							<Col>
 								<FormGroup>
 									<Label>{firebaseItems['12']} (12)</Label>
-									<Input type="number" onChange={(e) => {
+									<Input type="text" onChange={(e) => {
 										setForm((prevState) => ({...prevState, 12: parseFloat(e.target.value) * 10}));
 									}}/>
 								</FormGroup>
