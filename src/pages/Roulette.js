@@ -27,6 +27,7 @@ function Roulette() {
 	const [prizeNumber, setPrizeNumber] = useState(0);
 	const [firebaseData, setFirebaseData] = useState({})
 	const [firebaseItems, setFirebaseItems] = useState({})
+	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [form, setForm] = useState({
 		1: 0,
 		2: 0,
@@ -50,6 +51,8 @@ function Roulette() {
 
 	const onSubmit = (e) => {
 		e.preventDefault()
+
+		setIsSubmitted(true)
 
 		let sum = 0
 		Object.keys(form).forEach(function(key) {
@@ -209,7 +212,7 @@ function Roulette() {
 						setMustSpin(false);
 					}}
 				/>
-				<button className="btn btn-primary" onClick={handleSpinClick} disabled={!isAuth}>
+				<button className="btn btn-primary" onClick={handleSpinClick} disabled={!isAuth || !isSubmitted}>
 					SPIN
 				</button>
 				<br/>
