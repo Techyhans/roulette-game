@@ -123,10 +123,35 @@ function Roulette() {
 
 		fetchData()
 		fetchItem()
-		checkToken()
-		// console.log(checkToken())
-		// setIsAuth(checkToken())
 	}, [])
+
+	useEffect(() => {
+		selectTokens().then((snapshot) => {
+			let isValid = true;
+			snapshot.forEach((item) => {
+				// console.log(item.val().uuid, queryString.parse(location.search).token, item.val().status)
+				if (item.val().uuid === queryString.parse(location.search).token && item.val().status === true) {
+					database
+						.ref()
+						.child('auth')
+						.child(item.key)
+						.update({
+							"status": false
+						})
+						.then(() => {
+							setIsAuth(true)
+						})
+						.catch(() => {
+						})
+				}
+				if (item.val().uuid === queryString.parse(location.search).token && item.val().status === false){
+					isValid = false
+				}
+			})
+			// console.log(isValid)
+			setIsAuth(isValid)
+		})
+	}, [location.search])
 
 	const selectPrizeClass = (prizeNumber) => {
 		let currIdx = 0;
